@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div>测试箭头函数this</div>
+    </body>
+</html>
+<script>
+    //JS函数有两种:关键字function   箭头函数
+
+    //箭头函数:本身没有this,箭头函数的this取决于定义[生命箭头函数作用域]决定的！！！
+
+    const add = () => {
+        // console.log(this);
+    };
+    //箭头函数：this，在声明的时候就已经决定了！！！！
+    document.querySelector("div").onclick = add;
+    add.apply({});
+    add.call({});
+
+    //关键字函数Function,this！！！如何调用
+    function test() {
+        console.log(this);
+    }
+    // test();
+</script>
+
+<script>
+    let obj = {
+        a: 1,
+        b: 2,
+        c: function () {
+            // console.log(this);
+            setInterval(function () {
+                console.log(this);
+            }, 1000);
+        },
+    };
+    obj.c();
+</script>

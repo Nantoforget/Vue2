@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body> </body>
+</html>
+<script>
+    let vm = {
+        msg: "123",
+    };
+    let data = {};
+    Object.defineProperty(data, "msg", {
+        set(a) {
+            console.log("a", a);
+            vm.msg = a;
+        },
+        get() {
+            return vm.msg;
+        },
+    });
+    data.msg = "123";
+    // vm.msg = "456";
+    console.log(data.msg);
+    //********************************************
+    //proxy
+    const obj = {
+        name: "孙悟空",
+        age: 18,
+    };
+    const handler = {
+        set(target, prop, value, receiver) {
+            console.log("set触发了");
+            target[prop] = value;
+        },
+        get(target, prop, receiver) {
+            console.log("get触发了");
+            return obj.age;
+        },
+    };
+    const proxy = new Proxy(obj, handler);
+    // proxy.age = 456;
+    console.log(proxy.age);
+</script>

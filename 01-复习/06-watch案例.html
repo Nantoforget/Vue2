@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <input type="text" v-model="keyword" placeholder="请输入关键字" />
+            <div>
+                <ul>
+                    <li v-for="(item,index) of list" :key="index">
+                        {{item.q}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            let vm = new Vue({
+                el: "#box",
+                data: {
+                    keyword: "",
+                    list: [],
+                },
+                methods: {},
+                computed: {},
+                watch: {
+                    keyword(newVal) {
+                        jQuery110204637648384152675_1679980497711 = (data) => {
+                            console.log(data);
+                            this.list = data.g;
+                        };
+                        let script = document.createElement("script");
+                        script.src = `https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=38185,36557,38410,38469,38366,38399,38468,38173,38289,36807,37933,38382,26350,38282,37881&wd=${newVal}&req=2&csor=1&pwd=${newVal}&cb=jQuery110204637648384152675_1679980497711&_=1679980497717`;
+                        document.body.appendChild(script);
+                    },
+                },
+            });
+        </script>
+    </body>
+    <!-- 
+        https://www.bing.com/AS/Suggestions?pt=page.serp&bq=hh&mkt=zh-cn&ds=mobileweb&qry=z&cp=1&msbqf=false&cvid=343482C2A76C4B3CBCEB429DBEBD80C8
+        https://www.baidu.com/sugrec?&prod=pc_his&from=pc_web&json=1&sid=38185_36557_38410_38469_38366_38399_38468_38173_38289_36807_37933_38382_26350_38282_37881&hisdata=&_t=1679980037101&req=2&sc=eb&csor=0
+    -->
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <h1>{{obj.age.count}}</h1>
+            <button @click="addCount">Click Me</button>
+        </div>
+        <script>
+            let vm = new Vue({
+                el: "#box",
+                data: {
+                    obj: {
+                        name: "孙悟空",
+                        age: {
+                            count: 0,
+                        },
+                    },
+                },
+                methods: {
+                    addCount() {
+                        this.obj.age.count++;
+                    },
+                },
+                computed: {},
+                watch: {
+                    /*
+                        watch监听，它主要的作用是可以监听vm属性值的变化
+                    */
+                    /* "obj.age.count"() {
+                        console.log(123);
+                    },  不允许这么写，因为vm上没有count这个属性 */
+                    /**************************/
+                    //深度监听,对象写法
+                    obj: {
+                        //立即执行，上来就执行一次
+                        immediate: true,
+                        //深度监听
+                        deep: true,
+                        //监听属性变化执行函数，名字必须为handler
+                        handler(newVal, oldVal) {
+                            console.log(newVal, oldVal);
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

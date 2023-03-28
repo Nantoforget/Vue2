@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="box">
+            <h1 ref="name">{{count}}</h1>
+            <button @click="minus">减一</button>
+            <button @click="add">加一</button>
+        </div>
+        <script>
+            let vm = new Vue({
+                el: "#box",
+                data: {
+                    count: 0,
+                },
+                methods: {
+                    add() {
+                        this.count++;
+                    },
+                    minus() {
+                        this.count--;
+                    },
+                },
+                //初始化阶段的钩子函数
+                beforeCreate() {
+                    /* 
+                        vm未完全初始化的钩子--最先执行的生命周期函数
+                        vm的属性和方法都获取不到
+                    */
+                    // console.log(this);//undefined
+                },
+                created() {
+                    /* 
+                        初始化完毕了，可以访问vm中的data和methods
+                     */
+                    // console.log(this.count);//0
+                },
+                beforeMount() {
+                    /* 
+                        vm与模板关联之前(挂载之前)，无法获取DOM
+                     */
+                    console.log(this.$refs.name); //undefined
+                },
+                mounted() {
+                    /* 
+                        vm与模板关联后(挂载完成),DOM挂载完成
+                     */
+                    console.log(this.$refs.name); //<h1>0</h1>
+                },
+                //更新阶段
+                beforeUpdate() {
+                    /* 
+                        响应数据更新之前
+                     */
+                    console.log("前", this.count);
+                },
+                updated() {
+                    /* 
+                        响应数据更新之后
+                     */
+                    console.log("后", this.count);
+                },
+                //销毁阶段
+                beforeDestroy() {
+                    /* 
+                        销毁之前
+                     */
+                },
+                destroyed() {
+                    /* 
+                        销毁之后
+                     */
+                },
+            });
+        </script>
+    </body>
+</html>
