@@ -2,7 +2,11 @@
     <div class="app">
         <A :addInfo="addInfo"></A>
         <B :info="info" :changeDoneB="changeDone" :delDate="delDate"></B>
-        <c :info="info" :delAll="delAll" :checkAll="checkAll"></c>
+        <c
+            :info="info"
+            :delAll="delAll"
+            :checkAll="checkAll"
+            :checked="checked"></c>
     </div>
 </template>
 <script>
@@ -17,7 +21,7 @@
         data() {
             return {
                 //信息
-                info: [
+                info: JSON.parse(localStorage.getItem("info")) || [
                     {
                         id: 1,
                         title: "哈哈哈",
@@ -47,7 +51,7 @@
                     title: value,
                     done: false,
                 };
-                this.info.push(this.newInfo);
+                this.info.unshift(this.newInfo);
             },
             //B组件单项改变选中状态
             changeDone(id) {
@@ -86,6 +90,23 @@
                 this.info.forEach((ele) => {
                     ele.done = bool;
                 });
+            },
+        },
+        computed: {
+            //计算已完成的数量组成一个数组
+            checked() {
+                const num = this.info.filter((ele) => {
+                    return ele.done === true;
+                });
+                return num;
+            },
+        },
+        watch: {
+            info: {
+                deep: true,
+                handler() {
+                    localStorage.setItem("info", JSON.stringify(this.info));
+                },
             },
         },
     };

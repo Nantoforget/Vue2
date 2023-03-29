@@ -10,7 +10,9 @@
                             @change="changeDone(todo.id)" />
                         {{ todo.title }}
                     </span>
-                    <button @click="remove(todo.id)">删除</button>
+                    <button v-show="todo.done" @click="remove(todo.id)">
+                        删除
+                    </button>
                 </label>
             </li>
         </ul>

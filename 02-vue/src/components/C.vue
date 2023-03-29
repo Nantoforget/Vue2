@@ -17,7 +17,7 @@
         // 组件名字
         name: "C",
         //props
-        props: ["info", "delAll", "checkAll"],
+        props: ["info", "delAll", "checkAll", "checked"],
         // 状态数据
         data() {
             return {
@@ -38,15 +38,7 @@
                 }
             },
         },
-        computed: {
-            //计算已完成的数量组成一个数组
-            checked() {
-                const num = this.info.filter((ele) => {
-                    return ele.done === true;
-                });
-                return num;
-            },
-        },
+        computed: {},
     };
 </script>
 <style scoped>
