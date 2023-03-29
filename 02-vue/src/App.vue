@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 v-big="msg">我是App组件</h1>
-        <todo-header></todo-header>
+        <todo-header @son="son"></todo-header>
         <!-- 使用过滤器 -->
         <h2>{{ time | timeFormat }}</h2>
     </div>
@@ -36,7 +36,11 @@ export default {
             return val * 2;
         },
     },
-    methods: {},
+    methods: {
+        son(string) {
+            console.log(string, "儿子调用的");
+        },
+    },
     computed: {},
 };
 </script>

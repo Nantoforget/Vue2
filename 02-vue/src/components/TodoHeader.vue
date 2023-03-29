@@ -1,5 +1,5 @@
 <template>
-    <div class="header">TodoHeader组件</div>
+    <div class="header" @click="toF">TodoHeader组件</div>
 </template>
 <script>
 export default {
@@ -9,7 +9,11 @@ export default {
     data() {
         return {};
     },
-    methods: {},
+    methods: {
+        toF() {
+            this.$emit("son", "TodoHeader");
+        },
+    },
     computed: {},
 };
 </script>
