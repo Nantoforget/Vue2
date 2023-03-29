@@ -1,15 +1,14 @@
 <template>
     <div>
-        <h1>我是App组件</h1>
-        <todo-header></todo-header>
+        <pre>
+            我是一个轮播图，我是全局组件
+        </pre>
     </div>
 </template>
 <script>
-import TodoHeader from "./components/TodoHeader.vue";
 export default {
-    components: { TodoHeader },
     // 组件名字
-    name: "App",
+    name: "Carousel",
     // 状态数据
     data() {
         return {};
@@ -18,4 +17,5 @@ export default {
     computed: {},
 };
 </script>
-<style scoped></style>
+<style scoped>
+</style>
