@@ -2,6 +2,8 @@
     <div>
         <h1 v-big="msg">我是App组件</h1>
         <todo-header></todo-header>
+        <!-- 使用过滤器 -->
+        <h2>{{ time | timeFormat }}</h2>
     </div>
 </template>
 <script>
@@ -16,7 +18,7 @@ export default {
         //第三个参数是虚拟对象
         //第四个参数是虚拟对象
         big(element, option) {
-            console.log(option);
+            // console.log(option);
         },
     },
     // 组件名字
@@ -25,10 +27,24 @@ export default {
     data() {
         return {
             msg: "abcd",
+            time: Date.now(),
         };
+    },
+    //过滤器，利用一个值，生成一个新值
+    filters: {
+        timeFormat(val) {
+            return val * 2;
+        },
     },
     methods: {},
     computed: {},
 };
 </script>
-<style scoped></style>
+<style scoped lang="less">
+@color: red;
+div {
+    h1 {
+        color: @color;
+    }
+}
+</style>
