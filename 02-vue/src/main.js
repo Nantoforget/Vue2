@@ -9,6 +9,12 @@ import Carousel from "@/components/Carousel";
 Vue.component("Carousel", Carousel);
 //全局的自定义指令
 Vue.directive("big", () => {});
+
+//自定义插件
+//引入插件
+import plugins from "./plugins";
+//利用Vue.use()来安装插件才能使用
+
 new Vue({
     render: (h) => h(App),
 }).$mount("#app");
