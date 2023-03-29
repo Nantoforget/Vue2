@@ -12,9 +12,13 @@ Vue.directive("big", () => {});
 
 //自定义插件
 //引入插件
-import plugins from "./plugins";
 //利用Vue.use()来安装插件才能使用
-
+import plugins from "./plugins";
 new Vue({
+    beforeCreate() {
+        console.log(this);
+        //配置全局事件总线$bus
+        Vue.prototype.$bus = this;
+    },
     render: (h) => h(App),
 }).$mount("#app");

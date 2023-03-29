@@ -15,6 +15,11 @@ export default {
         },
     },
     computed: {},
+    mounted() {
+        this.$bus.$on("money", (a) => {
+            console.log(a);
+        });
+    },
 };
 </script>
 <style scoped>

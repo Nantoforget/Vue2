@@ -32,8 +32,9 @@
                     /* 
                         vm未完全初始化的钩子--最先执行的生命周期函数
                         vm的属性和方法都获取不到
+                        可以访问this
                     */
-                    // console.log(this);//undefined
+                    console.log(this);
                 },
                 created() {
                     /* 

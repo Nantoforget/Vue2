@@ -2,15 +2,17 @@
     <div>
         <h1 v-big="msg">我是App组件</h1>
         <todo-header @son="son"></todo-header>
+        <D></D>
         <!-- 使用过滤器 -->
         <h2>{{ time | timeFormat }}</h2>
     </div>
 </template>
 <script>
 import TodoHeader from "./components/TodoHeader.vue";
+import D from "./components/D.vue";
 export default {
     //注册组件
-    components: { TodoHeader },
+    components: { TodoHeader, D },
     //自定义指令，没有this(局部指令)(操作真实的DOM)
     directives: {
         //第一个参数是指令绑定的真实的DOM节点
