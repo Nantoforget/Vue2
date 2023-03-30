@@ -19,9 +19,15 @@
         <hr />
         <c></c>
         <d></d>
+        <e :todo="todo">
+            <template slot-scope="{ row }">
+                <div>{{ row }}--{{ row.name }}--{{ row.age }}</div>
+            </template>
+        </e>
     </div>
 </template>
 <script>
+import { provide } from "vue";
 //辅助函数mapState,可以获取仓库state的数据
 //辅助函数mapGetters,可以获取仓库getters的数据
 //经常结合计算属性使用
@@ -30,15 +36,43 @@ import A from "@/components/A.vue";
 import B from "@/components/B.vue";
 import C from "@/components/C.vue";
 import D from "@/components/D.vue";
+import E from "./components/E.vue";
 export default {
-    components: { A, B, C, D },
+    provide: function () {
+        return {
+            count1: this.count1,
+        };
+    },
+    components: { A, B, C, D, E },
     // 组件名字
     name: "App",
     // 状态数据
     data() {
         return {
-            count1: 0,
+            count1: 1,
             isShow: false,
+            todo: [
+                {
+                    name: "孙悟空",
+                    age: 18,
+                    hobby: ["金箍棒", "花果山"],
+                },
+                {
+                    name: "猪八戒",
+                    age: 28,
+                    hobby: ["九齿钉耙", "高老庄"],
+                },
+                {
+                    name: "沙和尚",
+                    age: 38,
+                    hobby: ["戒杖", "流沙河"],
+                },
+                {
+                    name: "唐僧",
+                    age: 16,
+                    hobby: ["禅杖", "女儿国"],
+                },
+            ],
         };
     },
     methods: {
