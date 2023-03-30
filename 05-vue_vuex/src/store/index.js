@@ -7,6 +7,9 @@ export default new Vuex.Store({
     state: {
         count: 1,
         msg: "哈哈哈",
+        R: 0,
+        G: 0,
+        B: 0,
     },
     //异步,不能直接修改数据，只能处理业务
     actions: {
@@ -36,6 +39,16 @@ export default new Vuex.Store({
             }, 2000);
             // clearTimeout(timer);
         },
+        color({ state, commit, dispatch }, RGB) {
+            // console.log(RGB.value);
+            if (RGB.name === "red") {
+                commit("CHANGER", RGB.value);
+            } else if (RGB.name === "green") {
+                commit("CHANGEG", RGB.value);
+            } else {
+                commit("CHANGEB", RGB.value);
+            }
+        },
     },
     //状态修改
     mutations: {
@@ -44,6 +57,15 @@ export default new Vuex.Store({
         },
         MINUSCOUNT(state) {
             state.count--;
+        },
+        CHANGER(state, val) {
+            state.R = val;
+        },
+        CHANGEG(state, val) {
+            state.G = val;
+        },
+        CHANGEB(state, val) {
+            state.B = val;
         },
     },
     //计算属性

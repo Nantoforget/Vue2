@@ -1,17 +1,24 @@
 <template>
     <div>
-        <h1>我是App</h1>
-        <button @click="add(1)">+1</button>
-        <button @click="minus(1)">-1</button>
-        <button @click="add(2)">偶数+1</button>
-        <button @click="minus(2)">奇数-1</button>
-        <button @click="add(100)">+100</button>
-        <button @click="delay">两秒后-1</button>
-        <h1>{{ $store.state.count }}</h1>
-        <div>
-            <A :count1="count1"></A>
+        <div v-show="isShow">
+            <h1>我是App</h1>
+            <button @click="add(1)">+1</button>
+            <button @click="minus(1)">-1</button>
+            <button @click="add(2)">偶数+1</button>
+            <button @click="minus(2)">奇数-1</button>
+            <button @click="add(100)">+100</button>
+            <button @click="delay">两秒后-1</button>
+            <h1>{{ $store.state.count }}</h1>
+            <div>
+                <A :count1="count1"></A>
+            </div>
+            <input type="text" v-model="msg" />
         </div>
-        <input type="text" v-model="msg" />
+        <hr />
+        <B v-show="isShow"></B>
+        <hr />
+        <c></c>
+        <d></d>
     </div>
 </template>
 <script>
@@ -20,14 +27,18 @@
 //经常结合计算属性使用
 import { mapState, mapGetters, mapActions } from "vuex";
 import A from "@/components/A.vue";
+import B from "@/components/B.vue";
+import C from "@/components/C.vue";
+import D from "@/components/D.vue";
 export default {
-    components: { A },
+    components: { A, B, C, D },
     // 组件名字
     name: "App",
     // 状态数据
     data() {
         return {
             count1: 0,
+            isShow: false,
         };
     },
     methods: {
@@ -51,7 +62,6 @@ export default {
     },
     mounted() {
         this.$bus.$on("countAdd", () => this.countAdd());
-        console.log(this);
     },
     computed: {
         //辅助函数mapState,可以获取仓库state的数据
